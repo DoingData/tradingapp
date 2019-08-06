@@ -21,7 +21,7 @@ Account creation and make money deposit and withdrawl allows user to purchase an
     ```bash run```
   
 ### Architecture
-![tradinapp pic](https://github.com/UsmanAsifJrvs/tradingapp/assets/tradingapp.svg)
+![tradinapp pic](https://github.com/UsmanAsifJrvs/tradingapp/blob/master/assets/tradingapp.svg)
 
 App is developed with multiple layers and different components each layer
  have a specific functionality
