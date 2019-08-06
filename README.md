@@ -21,7 +21,9 @@ Account creation and make money deposit and withdrawl allows user to purchase an
     ```bash run```
   
 ### Architecture
-App is developed with multiple layers and diiferent components each layer
+![tradinapp pic](https://github.com/UsmanAsifJrvs/tradingapp/assets/tradingapp.svg)
+
+App is developed with multiple layers and different components each layer
  have a specific functionality
 - Controller
 - DAO
