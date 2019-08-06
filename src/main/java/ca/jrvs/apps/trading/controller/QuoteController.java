@@ -24,7 +24,6 @@ public class QuoteController {
     private QuoteService quoteService;
     private QuoteDao quoteDao;
     private MarketDataDao marketDataDao;
-
     @Autowired
     public QuoteController(QuoteService quoteService, QuoteDao quoteDao,
                            MarketDataDao marketDataDao) {
@@ -42,7 +41,6 @@ public class QuoteController {
             throw new RuntimeException(e);
         }
     }
-
     @PutMapping(path = "/")
     @ResponseStatus(HttpStatus.OK)
     public void putQuote(@RequestBody Quote quote) {
@@ -52,7 +50,6 @@ public class QuoteController {
             throw new RuntimeException(e);
         }
     }
-
     @PostMapping(path = "/tickerId/{tickerId}")
     @ResponseStatus(HttpStatus.CREATED)
     public void createQuote(@PathVariable String tickerId) {
@@ -62,7 +59,6 @@ public class QuoteController {
             throw new RuntimeException(e);
         }
     }
-
 
     @GetMapping(path = "/dailyList")
     @ResponseStatus(HttpStatus.OK)
@@ -74,7 +70,6 @@ public class QuoteController {
             throw new RuntimeException(e);
         }
     }
-
     @GetMapping(path = "/iex/ticker/{ticker}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -85,23 +80,15 @@ public class QuoteController {
             throw new RuntimeException(e);
         }
     }
-
     @GetMapping(path = "/iex/tickersInBatch/{ticker}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public List<IexQuote> getBatchQuote(@PathVariable String ticker) {
         try {
             List<String> tickers = new ArrayList<String>(Arrays.asList(ticker.split(",")));
-
             return marketDataDao.UnmarshallJson(tickers);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-
 }
-
-
-
-
-

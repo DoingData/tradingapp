@@ -12,5 +12,4 @@ public class TraderDao extends JdbcCrudDao<Trader, Integer> {
     public TraderDao(DataSource dataSource) {
         super(dataSource, "trader", "id", Trader.class, true);
     }
-
 }

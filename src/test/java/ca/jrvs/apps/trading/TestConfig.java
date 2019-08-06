@@ -21,7 +21,6 @@ public class TestConfig {
         dataSource.setPassword("password");
         return dataSource;
     }
-
     @Bean
     public HttpClientConnectionManager httpClientConnectionManager() {
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
@@ -29,7 +28,6 @@ public class TestConfig {
         cm.setDefaultMaxPerRoute(50);
         return cm;
     }
-
     @Bean
     public MarketDataConfig marketDataConfig() {
         MarketDataConfig marketDataConfig = new MarketDataConfig();

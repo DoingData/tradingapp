@@ -17,11 +17,9 @@ import java.time.LocalDate;
 @Controller
 @RequestMapping("/trader")
 public class TraderController {
-
     private RegisterService registerService;
     private TraderDao traderDao;
     private FundTransferService fundTransferService;
-
     @Autowired
     public TraderController(RegisterService registerService, TraderDao traderDao,
                             FundTransferService fundTransferService) {
@@ -29,7 +27,6 @@ public class TraderController {
         this.traderDao = traderDao;
         this.fundTransferService = fundTransferService;
     }
-
     @DeleteMapping(path = "/traderId/{traderId}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteTrader(@PathVariable Integer traderId) {
@@ -39,7 +36,6 @@ public class TraderController {
             throw new RuntimeException(e);
         }
     }
-
     @PostMapping(path = "/")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -71,7 +67,6 @@ public class TraderController {
             throw new RuntimeException(e);
         }
     }
-
     @PutMapping(path = "/deposit/traderId/{traderId}/amount/{amount}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -82,7 +77,6 @@ public class TraderController {
             throw new RuntimeException(e);
         }
     }
-
     @PutMapping(path = "/withdraw/traderId/{traderId}/amount/{amount}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -93,10 +87,4 @@ public class TraderController {
             throw new RuntimeException(e);
         }
     }
-
 }
-
-
-
-
-

@@ -13,12 +13,10 @@ import java.util.List;
 
 @Service
 public class RegisterService {
-
     private TraderDao traderDao;
     private AccountDao accountDao;
     private PositionDao positionDao;
     private SecurityOrderDao securityOrderDao;
-
     @Autowired
     public RegisterService(TraderDao traderDao, AccountDao accountDao,
                            PositionDao positionDao, SecurityOrderDao securityOrderDao) {
@@ -27,7 +25,6 @@ public class RegisterService {
         this.positionDao = positionDao;
         this.securityOrderDao = securityOrderDao;
     }
-
     /**
      * Create a new trader and initialize a new account with 0 amount.
      * - validate user input (all fields must be non empty)
@@ -57,7 +54,6 @@ public class RegisterService {
         } else
             throw new IllegalArgumentException("Validation of Trader failed");
     }
-
     /**
      * A trader can be deleted iff no open position and no cash balance.
      * - validate traderID
@@ -74,7 +70,6 @@ public class RegisterService {
         if (traderId == null) {
             throw new IllegalArgumentException("TraderId is not valid");
         }
-
         if (!(traderDao.existsById(traderId))) {
             throw new ResourceNotFoundException("Trader does not exists");
         }
@@ -82,17 +77,14 @@ public class RegisterService {
         if (account.getAmount() != 0.0) {
             throw new IllegalArgumentException("Account has some balance, can not be deleted");
         }
-
         List<Position> positions = positionDao.getPosition(account.getId());
         if (positions.size() != 0) {
             throw new IllegalArgumentException("Account has some positions, can not be deleted");
         }
-
         securityOrderDao.deletebyAccountId(account.getId());
         accountDao.deleteById(account.getId());
         traderDao.deleteById(traderId);
     }
-
     public boolean isValid(Trader trader) {
         Field[] fields = trader.getClass().getDeclaredFields();
         for (Field field : fields) {
@@ -107,7 +99,4 @@ public class RegisterService {
         }
         return true;
     }
-
 }
-
-

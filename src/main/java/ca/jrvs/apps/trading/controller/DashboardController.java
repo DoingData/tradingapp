@@ -17,7 +17,6 @@ public class DashboardController {
     public DashboardController(DashboardService dashboardService) {
         this.dashboardService = dashboardService;
     }
-
     @GetMapping(path = "/portfolio/traderId/{traderId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -28,7 +27,6 @@ public class DashboardController {
             throw new RuntimeException();
         }
     }
-
     @GetMapping(path = "profile/traderId/{traderId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -39,5 +37,4 @@ public class DashboardController {
             throw new RuntimeException();
         }
     }
-
 }

@@ -16,7 +16,5 @@ public class MarketDataDaoTest {
         MarketDataDao dao = new MarketDataDao(cm, marketDataConfig);
         dao.UnmarshallJson(Arrays.asList("aal", "fb"));
         dao.UnmarshallJson("aal");
-
     }
-
 }

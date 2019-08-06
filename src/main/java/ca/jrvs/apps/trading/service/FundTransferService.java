@@ -12,16 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class FundTransferService {
-
     private AccountDao accountDao;
     private TraderDao traderDao;
-
     @Autowired
     public FundTransferService(AccountDao accountDao, TraderDao traderDao) {
         this.accountDao = accountDao;
         this.traderDao = traderDao;
     }
-
     /**
      * Deposit a fund to the account which is associated with the traderId
      * - validate user input
@@ -36,15 +33,12 @@ public class FundTransferService {
      * @throws IllegalArgumentException                           for invalid input
      */
     public Account deposit(Integer traderId, Double fund) {
-
         if (traderId == null) {
             throw new IllegalArgumentException("TraderId is not valid");
         }
-
         if (fund <= 0.0) {
             throw new IllegalArgumentException("Fund amount has to be greater than zero");
         }
-
         if (!(traderDao.existsById(traderId))) {
             throw new ResourceNotFoundException("Trader does not exists");
         }
@@ -56,7 +50,6 @@ public class FundTransferService {
         }
         return null;
     }
-
     /**
      * Withdraw a fund from the account which is associated with the traderId
      * <p>
@@ -75,11 +68,9 @@ public class FundTransferService {
         if (traderId == null) {
             throw new IllegalArgumentException("TraderId is not valid");
         }
-
         if (fund <= 0.0) {
             throw new IllegalArgumentException("Fund amount has to be greater than zero");
         }
-
         if (!(traderDao.existsById(traderId))) {
             throw new ResourceNotFoundException("Trader does not exists");
         }

@@ -18,7 +18,6 @@ import static springfox.documentation.builders.PathSelectors.any;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-
     @Bean
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -32,7 +31,6 @@ public class SwaggerConfig {
                         new Contact("Saud Aslam", "jrvs.ca", "saud.aslam.jrvs.ca@gmail.com"), null, null,
                         new ArrayList<>()));
     }
-
     @Bean
     UiConfiguration uiConfig() {
         return UiConfigurationBuilder.builder()
@@ -53,4 +51,3 @@ public class SwaggerConfig {
                 .build();
     }
 }
-

@@ -12,14 +12,10 @@ public class JsonUtil {
 
     public static String toJson(Object object) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
         return mapper.writeValueAsString(object);
-
     }
-
     /**
      * Parse JSON string to a object
      *
@@ -31,11 +27,9 @@ public class JsonUtil {
      */
     public static <T> T toObjectFromJson(String json,
                                          Class clazz) throws IOException {
-
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return (T) mapper.readValue(json, clazz);
-
     }
 
 }

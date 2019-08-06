@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 public class AppController {
-
     @GetMapping(path = "/health")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
@@ -19,5 +18,4 @@ public class AppController {
             throw new RuntimeException(e);
         }
     }
-
 }

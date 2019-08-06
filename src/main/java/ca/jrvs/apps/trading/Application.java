@@ -23,19 +23,14 @@ public class Application implements CommandLineRunner {
     private Logger logger = LoggerFactory.getLogger((Application.class));
      @Autowired
      private DataSource dataSource;
-
      @Value("aapl,fb")
      private String[] dailyList;
-
      @Autowired
      private QuoteService quoteService;
-
-    @Value("aapl,fb")
+     @Value("aapl,fb")
     private List<String> symbols;
-
-    public static void main(String[] args) throws Exception {
+     public static void main(String[] args) throws Exception {
         SpringApplication app = new SpringApplication(Application.class);
-
         //Turn off web
         app.run(args);
     }

@@ -12,18 +12,14 @@ import java.util.List;
         "securityRows"
 })
 public class PortfolioView {
-
     @JsonProperty("securityRows")
     private List<SecurityRows> securityRows = null;
-
     @JsonProperty("securityRows")
     public List<SecurityRows> getSecurityRows() {
         return securityRows;
     }
-
     @JsonProperty("securityRows")
     public void setSecurityRows(List<SecurityRows> securityRows) {
         this.securityRows = securityRows;
     }
-
 }

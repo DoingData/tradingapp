@@ -29,67 +29,54 @@ public class Trader implements Entity<Integer> {
     private String country;
     @JsonProperty("email")
     private String email;
-
     @JsonProperty("id")
     public Integer getId() {
         return id;
     }
-
     @JsonProperty("id")
     public void setId(Integer id) {
         this.id = id;
     }
-
     @JsonProperty("firstName")
     public String getFirstName() {
         return firstName;
     }
-
     @JsonProperty("firstName")
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     @JsonProperty("lastName")
     public String getLastName() {
         return lastName;
     }
-
     @JsonProperty("lastName")
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
     @JsonProperty("dob")
     public LocalDate getDob() {
         return dob;
     }
-
     @JsonProperty("dob")
     public void setDob(LocalDate dob) {
         this.dob = dob;
     }
-
     @JsonProperty("country")
     public String getCountry() {
         return country;
     }
-
     @JsonProperty("country")
     public void setCountry(String country) {
         this.country = country;
     }
-
     @JsonProperty("email")
     public String getEmail() {
         return email;
     }
-
     @JsonProperty("email")
     public void setEmail(String email) {
         this.email = email;
     }
-
     @Override
     public String toString() {
         return "Trader{" +
@@ -101,5 +88,4 @@ public class Trader implements Entity<Integer> {
                 ", email='" + email + '\'' +
                 '}';
     }
-
 }

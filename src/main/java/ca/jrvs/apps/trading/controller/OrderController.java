@@ -14,14 +14,11 @@ import java.util.Collections;
 @Controller
 @RequestMapping("/order")
 public class OrderController {
-
     private OrderService orderService;
-
     @Autowired
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
-
     @PostMapping(path = "/MarketOrder")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -31,9 +28,7 @@ public class OrderController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
-
 }
 
 

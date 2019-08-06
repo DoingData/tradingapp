@@ -1,5 +1,4 @@
 package ca.jrvs.apps.trading.dao;
-
 import ca.jrvs.apps.trading.model.dto.Entity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,18 +12,14 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
-
 public abstract class JdbcCrudDao<E extends Entity, ID> implements CrudRepository<E, ID> {
-
     private static final Logger logger = LoggerFactory.getLogger(JdbcCrudDao.class);
-
     public String TableName;
     private String IdName;
     private Class ClassName;
     private SimpleJdbcInsert simpleJdbcInsert;
     public JdbcTemplate jdbcTemplate;
     private boolean ReturnKey;
-
     // Constructor: would be called in subclass by using keyword:super;
     public JdbcCrudDao(DataSource dataSource, String TableName, String IdName, Class ClassName, boolean ReturnKey) {
         this.TableName = TableName;
@@ -32,13 +27,11 @@ public abstract class JdbcCrudDao<E extends Entity, ID> implements CrudRepositor
         this.ClassName = ClassName;
         this.ReturnKey = ReturnKey;
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-
         if (ReturnKey) {
             this.simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName(TableName).usingGeneratedKeyColumns(IdName);
         } else {
             this.simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName(TableName);
         }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -80,28 +73,22 @@ public abstract class JdbcCrudDao<E extends Entity, ID> implements CrudRepositor
     public E findById(ID id) {
         return findById(IdName, id, false, ClassName);
     }
-
     public E findByIdForUpdate(ID id) {
-
         return findById(IdName, id, true, ClassName);
     }
-
     /**
      * @return an entity
      * @throws java.sql.SQLException     if sql execution failed
      * @throws ResourceNotFoundException if no entity is found in db
      */
-
     @SuppressWarnings("unchecked")
     public E findById(String idName, ID id, boolean forUpdate, Class clazz) {
         E quote = null;
         String selectSql = "SELECT * FROM " + TableName + " WHERE " + idName + " =?";
-
         if (forUpdate) {
             selectSql += " for update";
         }
         logger.info(selectSql);
-
         try {
             quote = (E) jdbcTemplate
                     .queryForObject(selectSql,
@@ -114,12 +101,10 @@ public abstract class JdbcCrudDao<E extends Entity, ID> implements CrudRepositor
         }
         return quote;
     }
-
     @Override
     public boolean existsById(ID id) {
         return existsById(IdName, id);
     }
-
     public boolean existsById(String idName, ID id) {
         if (id == null) {
             throw new IllegalArgumentException("ID can't be null");
@@ -129,5 +114,4 @@ public abstract class JdbcCrudDao<E extends Entity, ID> implements CrudRepositor
         logger.info(String.valueOf(checker) + ":number means exist, 0 means doesnot exists");
         return (checker != 0) ? true : false;
     }
-
 }

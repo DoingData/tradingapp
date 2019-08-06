@@ -24,9 +24,7 @@ public class AppConfig {
   /*  @Bean
     public PlatformTransactionManager txManager(DataSource dataSource) {
     }
-
    */
-
     @Bean
     public MarketDataConfig marketDataConfig() {
      MarketDataConfig marketDataConfig = new MarketDataConfig();
@@ -34,7 +32,6 @@ public class AppConfig {
         marketDataConfig.setToken("pk_22792cfad91547bb99f9c84f1c5041e2");
         return marketDataConfig;
     }
-
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
@@ -44,8 +41,6 @@ public class AppConfig {
 
         return dataSource;
     }
-
-
     //http://bit.ly/2tWTmzQ connectionPool
     @Bean
     public HttpClientConnectionManager httpClientConnectionManager() {
@@ -55,4 +50,3 @@ public class AppConfig {
         return cm;
     }
 }
-

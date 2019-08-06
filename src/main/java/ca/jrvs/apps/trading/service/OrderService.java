@@ -18,14 +18,11 @@ import java.util.List;
 @Service
 @Transactional
 public class OrderService {
-
     private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
-
     private AccountDao accountDao;
     private SecurityOrderDao securityOrderDao;
     private QuoteDao quoteDao;
     private PositionDao positionDao;
-
     @Autowired
     public OrderService(AccountDao accountDao, SecurityOrderDao securityOrderDao,
                         QuoteDao quoteDao, PositionDao positionDao) {
@@ -34,7 +31,6 @@ public class OrderService {
         this.quoteDao = quoteDao;
         this.positionDao = positionDao;
     }
-
     /**
      * Execute a market order
      * <p>
@@ -61,8 +57,6 @@ public class OrderService {
             if (orderDto.getAccountId() < 0 || orderDto.getTicker() == null) {
                 throw new IllegalArgumentException("Invalid input");
             }
-
-
             securityOrder.setAccountId(orderDto.getAccountId());
             securityOrder.setSize(orderDto.getSize());
             securityOrder.setTicker(orderDto.getTicker());
@@ -79,13 +73,10 @@ public class OrderService {
 
             else
                 sell(amount, askPrice, securityOrder, orderDto);
-
-
         }
         SecurityOrder securityOrder1 = securityOrderDao.save(securityOrder);
         return securityOrder1;
     }
-
     protected void buy(Double amount, Double askPrice, SecurityOrder securityOrder, MarketOrderDto orderDto) {
         Double securityCost = (orderDto.getSize() * askPrice);
         if (amount < securityCost) {
@@ -96,11 +87,8 @@ public class OrderService {
             securityOrder.setStatus(SecurityOrder.orderStatus.FILLED);
             securityOrder.setNotes(null);
             accountDao.updateAccountbyID(amount - securityCost, orderDto.getAccountId());
-
         }
-
     }
-
     protected void sell(Double amount, Double askPrice, SecurityOrder securityOrder, MarketOrderDto orderDto) {
         Long pos = positionDao.getPosition(orderDto.getAccountId(), orderDto.getTicker());
 
@@ -114,10 +102,5 @@ public class OrderService {
             securityOrder.setStatus(SecurityOrder.orderStatus.CANCELLED);
             securityOrder.setNotes("You have less security in account");
         }
-
     }
-
-
-
-
 }

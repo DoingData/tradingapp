@@ -17,12 +17,10 @@ import java.util.List;
 @Transactional
 public class DashboardService {
     private static final Logger logger = LoggerFactory.getLogger(DashboardService.class);
-
     private TraderDao traderDao;
     private PositionDao positionDao;
     private AccountDao accountDao;
     private QuoteDao quoteDao;
-
     @Autowired
     public DashboardService(TraderDao traderDao, PositionDao positionDao, AccountDao accountDao,
                             QuoteDao quoteDao) {
@@ -31,7 +29,6 @@ public class DashboardService {
         this.accountDao = accountDao;
         this.quoteDao = quoteDao;
     }
-
     /**
      * Create and return a traderAccountView by trader ID
      * - get trader account by id
@@ -55,15 +52,11 @@ public class DashboardService {
         } catch (ResourceNotFoundException e) {
             e.getMessage();
         }
-
         TraderAccountView traderAccountView = new TraderAccountView();
         traderAccountView.setTrader(trader);
         traderAccountView.setAccount(account);
-
         return traderAccountView;
-
     }
-
     /**
      * Create and return portfolioView by trader ID
      * - get account by trader id
@@ -77,14 +70,12 @@ public class DashboardService {
      * @throws IllegalArgumentException                           for invalid input
      */
     public PortfolioView getProfileViewByTraderId(Integer traderId) {
-
         if (traderId < 0 || !traderDao.existsById(traderId))
             throw new IllegalArgumentException("TraderID: " + traderId + " not valid");
         SecurityRows securityRows = new SecurityRows();
         Account account = accountDao.findByTraderId(traderId);
         List<Position> positionList = positionDao.getPosition(account.getId());
         List<SecurityRows> securityRowss = new ArrayList<>();
-      
         for (Position position : positionList) {
             Quote quote = quoteDao.findById(position.getTicker());
             securityRows.setQuote(quote);
@@ -92,11 +83,8 @@ public class DashboardService {
             securityRows.setTicker(position.getTicker());
             securityRowss.add(securityRows);
         }
-
         PortfolioView portfolioView = new PortfolioView();
         portfolioView.setSecurityRows(securityRowss);
-
         return portfolioView;
-
     }
 }

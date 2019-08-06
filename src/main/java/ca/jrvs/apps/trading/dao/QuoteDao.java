@@ -16,14 +16,12 @@ public class QuoteDao extends JdbcCrudDao<Quote, String> {
     public QuoteDao(DataSource dataSource) {
         super(dataSource, "quote", "ticker", Quote.class, false);
     }
-
     public List<Quote> findAll() {
         String sql = "SELECT * FROM " + TableName;
         List<Quote> quotes = jdbcTemplate.query(sql,
                 new BeanPropertyRowMapper(Quote.class));
         return quotes;
     }
-
     public List<String> returnAllTickers() {
         List<Quote> quotes = findAll();
         List<String> tickersList = new ArrayList<>();
@@ -32,16 +30,10 @@ public class QuoteDao extends JdbcCrudDao<Quote, String> {
         }
         return tickersList;
     }
-
     public void update(List<Quote> quotes) {
         for (Quote quote : quotes) {
             deleteById(quote.getTicker());
             save(quote);
         }
     }
-
 }
-
-
-
-
